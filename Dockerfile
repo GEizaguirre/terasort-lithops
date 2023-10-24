@@ -9,6 +9,7 @@ RUN apt-get update \
       make \
       cmake \
       unzip \
+      wget \
     # cleanup package lists, they are not used anymore in this image
     && rm -rf /var/lib/apt/lists/* \
     && apt-cache search linux-headers-generic
@@ -36,8 +37,11 @@ RUN pip install --upgrade --ignore-installed pip wheel six setuptools \
         aio_pika \
         pyyaml \
         plotext \
+        pandas \
+        polars \
+        Cython \
         pyarrow \
-        polars
+        click
 
 # Set working directory to function root directory
 WORKDIR ${FUNCTION_DIR}
@@ -51,6 +55,11 @@ RUN unzip lithops_lambda.zip \
     && mv entry_point.py handler/
 
 # Put your dependencies here, using RUN pip install... or RUN apt install...
+RUN wget https://github.com/GEizaguirre/terasort-lithops/archive/refs/heads/main.zip \
+    && unzip main.zip \
+    && cd terasort-lithops-main \
+    && pip3 install -e . \
+    && cd ..
 
 ENTRYPOINT [ "/usr/local/bin/python", "-m", "awslambdaric" ]
 CMD [ "handler.entry_point.lambda_handler" ]

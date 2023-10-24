@@ -31,7 +31,7 @@ def run_terasort(
     timestamp = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
     timestamp_prefix = f"{timestamp}"
     
-    executor = FunctionExecutor(runtime_memory=runtime_memory)
+    executor = FunctionExecutor(runtime_memory=runtime_memory, runtime= runtime_name)
 
     click.echo("Sorting dataset: "+bcolors.BOLD+bcolors.OKBLUE+"%s "%(key)+bcolors.ENDC+bcolors.ENDC+"(%dMB)"%(get_data_size(executor.storage, bucket, key) / 1024 / 1024))
     click.echo("\t- "+bcolors.BOLD+"%d"%(map_parallelism)+bcolors.ENDC+" map partitions.")
@@ -75,5 +75,5 @@ def run_terasort(
     click.echo(bcolors.OKGREEN+bcolors.BOLD+"Sort time: %.2f s"%(end_time-start_time)+bcolors.ENDC+bcolors.ENDC)
 
     click.echo("\n\nRemoving intermediates...")
-    # remove_intermediates(executor, bucket, timestamp_prefix)
+    remove_intermediates(executor, bucket, timestamp_prefix)
     
