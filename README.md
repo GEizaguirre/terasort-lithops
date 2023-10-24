@@ -2,9 +2,9 @@
 
 Implementation of the TeraSort benchmark (a distributed sort), built on Lithops. It is based on [this Spark implementation of the Terasort benchmark](https://github.com/ehiggs/spark-terasort). 
 
-Tasks are executed on cloud functions and intermediate and output data is stored in object storage.
+Tasks are executed on cloud functions, object storage is used for reading & writing data (including the exchange of itnermediate files).
 
-To generate the input dataset, we recommend the [Lithops TeraGen implementation](https://github.com/gfinol/teragen-lithops).
+To generate the input dataset, we recommend the [Lithops TeraGen implementation](https://github.com/gfinol/teragen-lithops)! Our TeraSort implementation is designed to be used on the Ascii version of the TeraGen.
 
 ## Installation
 
@@ -16,7 +16,7 @@ You can find Lithops' documentation [here](https://lithops-cloud.github.io/). Yo
 pip3 install lithops
 ```
 
-To configure Lithops, check out its [configuration guide](https://lithops-cloud.github.io/docs/source/compute_backends.html). To say, you could set up its AWS Lambda (compute backend) and AWS S3 (storage backend) configuration.
+To configure Lithops, check out its [configuration guide](https://lithops-cloud.github.io/docs/source/compute_backends.html). To say, you could set up its AWS Lambda (compute backend) and AWS S3 (storage backend) configuration...
 
 ### Terasort installation
 
@@ -57,7 +57,12 @@ The script takes the following parameters:
 - **--map_parallelism**: Number of partitions in the map stage (number of parallel map tasks/workers).
 - **--runtime_name**: Name of the custom runtime.
 - **--reduce_parallelism (optional)**: Number of partitions in the reduce stage (number of parallel reduce tasks/workers). If not specified, it will be equal to **map_parallelism**.
-- **--runtime_memory (optional)**: Provisioned runtime memory (in MB) per cloud function.
+- **--runtime_memory (optional)**: Provisioned runtime memory (in MB) per cloud function. It is 1792 by default.
+
+
+
+
+Have fun sorting bytes.
 
 
 
