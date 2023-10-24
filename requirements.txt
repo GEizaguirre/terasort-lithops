@@ -1,0 +1,4 @@
+polars
+numpy
+lithops==3.0.1
+boto3
