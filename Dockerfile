@@ -55,9 +55,9 @@ RUN unzip lithops_lambda.zip \
     && mv entry_point.py handler/
 
 # Put your dependencies here, using RUN pip install... or RUN apt install...
-RUN wget https://github.com/GEizaguirre/terasort-lithops/archive/refs/heads/main.zip \
-    && unzip main.zip \
-    && cd terasort-lithops-main \
+RUN wget https://github.com/GEizaguirre/terasort-lithops/archive/refs/heads/logging.zip \
+    && unzip logging.zip \
+    && cd terasort-lithops-logging \
     && pip3 install -e . \
     && cd ..
 

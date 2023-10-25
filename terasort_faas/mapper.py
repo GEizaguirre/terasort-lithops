@@ -1,4 +1,5 @@
 import gc
+from typing import Dict
 from lithops import Storage
 from terasort_faas.df import construct_df,  serialize_partitions
 from terasort_faas.read_terasort_data import read_terasort_data
@@ -12,6 +13,7 @@ import numpy as np
 class Mapper:
 
     storage: Storage
+    partitions: Dict[int, bytes]
 
     def __init__(self, 
                  partition_id: int,
@@ -53,7 +55,7 @@ class Mapper:
 
         self.serialize()
 
-        self.execution_data["partition_sizes"] = { p_id: len(p) for p_id, p in self.partitions }
+        self.execution_data["partition_sizes"] = { p_id: len(p) for p_id, p in self.partitions.items() }
         self.execution_data["exchange_start"] = time.time()
 
 
