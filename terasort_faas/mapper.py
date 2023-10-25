@@ -1,10 +1,13 @@
 import gc
 from lithops import Storage
-from terasort_faas.df.construct import construct_df
-from terasort_faas.df.serialize import serialize_partitions
+from terasort_faas.df import construct_df,  serialize_partitions
 from terasort_faas.read_terasort_data import read_terasort_data
 import concurrent
 from terasort_faas.IO import get_read_range
+from terasort_faas.config import *
+import logging
+import time
+import numpy as np
 
 class Mapper:
 
@@ -25,17 +28,41 @@ class Mapper:
         self.timestamp_prefix = timestamp_prefix
         self.bucket = bucket
         self.key = key
+        self.execution_data = dict()
+        self.execution_data["worker_id"] = partition_id
 
 
     def run(self):
+
+        self.execution_data["start_time"] = time.time()
 
         self.storage = Storage()
 
         self.read()
 
-        self.partition()
+        self.execution_data["scan_time"] = time.time()
+        self.execution_data["read_size"] = len(self.data)
+
+        self.construct()
+
+        self.execution_data["construct_time"] = time.time()
+        self.execution_data["total_rows"] = len(self.df)
+        row_counts = np.unique(self.partitioning, return_counts=True)
+        self.execution_data["partition_rows"] = { k: v for k, v
+                                                 in zip(row_counts[0], row_counts[1])}
+
+        self.serialize()
+
+        self.execution_data["partition_sizes"] = { p_id: len(p) for p_id, p in self.partitions }
+        self.execution_data["exchange_start"] = time.time()
+
 
         self.exchange()
+
+
+        self.execution_data["end_time"] = time.time()
+
+        return {"mapper_%d"%(self.partition_id): self.execution_data}
 
     
     def read(self):
@@ -56,12 +83,10 @@ class Mapper:
         
         print("Read %d bytes"%(len(self.data)))
         
-        
 
-
-    def partition(self):
+    def construct(self):
         
-        keys_list, values_list, partitioning = read_terasort_data(self.data, self.reduce_partitions)
+        keys_list, values_list, self.partitioning = read_terasort_data(self.data, self.reduce_partitions)
 
         del self.data
         gc.collect()
@@ -72,21 +97,31 @@ class Mapper:
         del values_list
         gc.collect()
 
+
+    def serialize(self):
+
         self.partitions = serialize_partitions(
             self.reduce_partitions,
             self.df, 
-            partitioning
+            self.partitioning
         )
 
         del self.df
+        del self.partitioning
         gc.collect()
 
-    
+
     def exchange(self):
         
         base_id = self.reduce_partitions * self.partition_id
 
         futures = []
+
+        def timed_put(bucket, key, body):
+            then = time.time()
+            self.storage.put_object(bucket, key, body)
+            elapsed = time.time() - then
+            return elapsed
 
         with concurrent.futures.ThreadPoolExecutor(max_workers=len(self.partitions)) as executor:
 
@@ -95,12 +130,14 @@ class Mapper:
                 subpartition_id = base_id + reducer_id
 
                 future = executor.submit(
-                     self.storage.put_object,  
+                     timed_put,  
                      self.bucket,
                      f"{self.timestamp_prefix}/intermediates/{subpartition_id}", 
-                     b''.join([data]))
+                     data)
                 
                 futures.append(future)
+
+        self.execution_data["write_times"] = { future_id: future.result() for future_id, future in enumerate(futures) }
 
 
 def run_mapper(mapper: Mapper):

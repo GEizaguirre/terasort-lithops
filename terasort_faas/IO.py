@@ -6,6 +6,11 @@ import time
 from botocore.exceptions import ClientError
 from lithops.storage.utils import StorageNoSuchKeyError
 from terasort_faas.config import *
+import logging
+
+
+console_logger = logging.getLogger(CONSOLE_LOGGER)
+
 
 def get_data_size(storage: Storage,
                   bucket: str,
@@ -57,28 +62,28 @@ def reader(key: int,
                 key = key
             )
 
-            return data
+            return data, time.time() - before_readt, len(data)
 
 
         except ClientError as ex:
             if ex.response['Error']['Code'] == 'NoSuchKey':
                 if time.time() - before_readt > MAX_READ_TIME:
-                    return b""
+                    return b"", -1, -1
             time.sleep(RETRY_WAIT_TIME)
             continue
 
         except StorageNoSuchKeyError as ex:
             if time.time() - before_readt > MAX_READ_TIME:
-                return b""
+                return b"", -1, -1
             time.sleep(RETRY_WAIT_TIME)
             continue
 
         except (http.client.IncompleteRead) as e:
             if retry == MAX_RETRIES:
-                return b""
+                return b"", -1, -1
             retry += 1
             continue
 
         except Exception as e:
-
-            return b""  
+            console_logger.info(f"{e}")
+            return b"", -1, -1 

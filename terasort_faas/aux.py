@@ -6,6 +6,7 @@ import polars as pl
 
 
 def check_output(bucket, prefix):
+    
     # Receives the bucket and prefix of the outputs as arguments
     bucket = sys.argv[1]
     prefix = sys.argv[2]
@@ -33,3 +34,13 @@ def check_output(bucket, prefix):
     # print(all_keys)
     is_ascending = all_keys.is_sorted()
     print(f"Global sorting: {is_ascending}. ({len(all_keys)} registers)")
+
+
+def remove_intermediates(executor, bucket, timestamp_prefix):
+
+    keys = executor.storage.list_objects(bucket, prefix=timestamp_prefix)
+    keys = [ k["Key"] for k in keys ]
+
+    executor.storage.delete_objects(bucket, keys)
+
+

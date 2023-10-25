@@ -2420,7 +2420,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
  * 
  * cdef get_partition(char* line, uint64_t range_per_part):             # <<<<<<<<<<<<<<
  * 
- *     cdef char * reverse_line = <char *> malloc(sizeof(char)*7)
+ *     cdef char * reverse_line = <char *> malloc(sizeof(char)*8)
  */
 
 static PyObject *__pyx_f_13terasort_faas_18read_terasort_data_get_partition(char *__pyx_v_line, uint64_t __pyx_v_range_per_part) {
@@ -2440,96 +2440,105 @@ static PyObject *__pyx_f_13terasort_faas_18read_terasort_data_get_partition(char
   /* "terasort_faas/cython/read_terasort_data.pyx":24
  * cdef get_partition(char* line, uint64_t range_per_part):
  * 
- *     cdef char * reverse_line = <char *> malloc(sizeof(char)*7)             # <<<<<<<<<<<<<<
- *     reverse_line[0] = line[6]
- *     reverse_line[1] = line[5]
+ *     cdef char * reverse_line = <char *> malloc(sizeof(char)*8)             # <<<<<<<<<<<<<<
+ *     reverse_line[0] = line[7]
+ *     reverse_line[1] = line[6]
  */
-  __pyx_v_reverse_line = ((char *)malloc(((sizeof(char)) * 7)));
+  __pyx_v_reverse_line = ((char *)malloc(((sizeof(char)) * 8)));
 
   /* "terasort_faas/cython/read_terasort_data.pyx":25
  * 
- *     cdef char * reverse_line = <char *> malloc(sizeof(char)*7)
- *     reverse_line[0] = line[6]             # <<<<<<<<<<<<<<
- *     reverse_line[1] = line[5]
- *     reverse_line[2] = line[4]
+ *     cdef char * reverse_line = <char *> malloc(sizeof(char)*8)
+ *     reverse_line[0] = line[7]             # <<<<<<<<<<<<<<
+ *     reverse_line[1] = line[6]
+ *     reverse_line[2] = line[5]
  */
-  (__pyx_v_reverse_line[0]) = (__pyx_v_line[6]);
+  (__pyx_v_reverse_line[0]) = (__pyx_v_line[7]);
 
   /* "terasort_faas/cython/read_terasort_data.pyx":26
- *     cdef char * reverse_line = <char *> malloc(sizeof(char)*7)
- *     reverse_line[0] = line[6]
- *     reverse_line[1] = line[5]             # <<<<<<<<<<<<<<
- *     reverse_line[2] = line[4]
- *     reverse_line[3] = line[3]
+ *     cdef char * reverse_line = <char *> malloc(sizeof(char)*8)
+ *     reverse_line[0] = line[7]
+ *     reverse_line[1] = line[6]             # <<<<<<<<<<<<<<
+ *     reverse_line[2] = line[5]
+ *     reverse_line[3] = line[4]
  */
-  (__pyx_v_reverse_line[1]) = (__pyx_v_line[5]);
+  (__pyx_v_reverse_line[1]) = (__pyx_v_line[6]);
 
   /* "terasort_faas/cython/read_terasort_data.pyx":27
- *     reverse_line[0] = line[6]
- *     reverse_line[1] = line[5]
- *     reverse_line[2] = line[4]             # <<<<<<<<<<<<<<
- *     reverse_line[3] = line[3]
- *     reverse_line[4] = line[2]
+ *     reverse_line[0] = line[7]
+ *     reverse_line[1] = line[6]
+ *     reverse_line[2] = line[5]             # <<<<<<<<<<<<<<
+ *     reverse_line[3] = line[4]
+ *     reverse_line[4] = line[3]
  */
-  (__pyx_v_reverse_line[2]) = (__pyx_v_line[4]);
+  (__pyx_v_reverse_line[2]) = (__pyx_v_line[5]);
 
   /* "terasort_faas/cython/read_terasort_data.pyx":28
- *     reverse_line[1] = line[5]
- *     reverse_line[2] = line[4]
- *     reverse_line[3] = line[3]             # <<<<<<<<<<<<<<
- *     reverse_line[4] = line[2]
- *     reverse_line[5] = line[1]
+ *     reverse_line[1] = line[6]
+ *     reverse_line[2] = line[5]
+ *     reverse_line[3] = line[4]             # <<<<<<<<<<<<<<
+ *     reverse_line[4] = line[3]
+ *     reverse_line[5] = line[2]
  */
-  (__pyx_v_reverse_line[3]) = (__pyx_v_line[3]);
+  (__pyx_v_reverse_line[3]) = (__pyx_v_line[4]);
 
   /* "terasort_faas/cython/read_terasort_data.pyx":29
- *     reverse_line[2] = line[4]
- *     reverse_line[3] = line[3]
- *     reverse_line[4] = line[2]             # <<<<<<<<<<<<<<
- *     reverse_line[5] = line[1]
- *     reverse_line[6] = line[0]
+ *     reverse_line[2] = line[5]
+ *     reverse_line[3] = line[4]
+ *     reverse_line[4] = line[3]             # <<<<<<<<<<<<<<
+ *     reverse_line[5] = line[2]
+ *     reverse_line[6] = line[1]
  */
-  (__pyx_v_reverse_line[4]) = (__pyx_v_line[2]);
+  (__pyx_v_reverse_line[4]) = (__pyx_v_line[3]);
 
   /* "terasort_faas/cython/read_terasort_data.pyx":30
- *     reverse_line[3] = line[3]
- *     reverse_line[4] = line[2]
- *     reverse_line[5] = line[1]             # <<<<<<<<<<<<<<
- *     reverse_line[6] = line[0]
- * 
+ *     reverse_line[3] = line[4]
+ *     reverse_line[4] = line[3]
+ *     reverse_line[5] = line[2]             # <<<<<<<<<<<<<<
+ *     reverse_line[6] = line[1]
+ *     reverse_line[7] = line[0]
  */
-  (__pyx_v_reverse_line[5]) = (__pyx_v_line[1]);
+  (__pyx_v_reverse_line[5]) = (__pyx_v_line[2]);
 
   /* "terasort_faas/cython/read_terasort_data.pyx":31
- *     reverse_line[4] = line[2]
- *     reverse_line[5] = line[1]
- *     reverse_line[6] = line[0]             # <<<<<<<<<<<<<<
+ *     reverse_line[4] = line[3]
+ *     reverse_line[5] = line[2]
+ *     reverse_line[6] = line[1]             # <<<<<<<<<<<<<<
+ *     reverse_line[7] = line[0]
+ * 
+ */
+  (__pyx_v_reverse_line[6]) = (__pyx_v_line[1]);
+
+  /* "terasort_faas/cython/read_terasort_data.pyx":32
+ *     reverse_line[5] = line[2]
+ *     reverse_line[6] = line[1]
+ *     reverse_line[7] = line[0]             # <<<<<<<<<<<<<<
  * 
  *     cdef uint64_t prefix = 0
  */
-  (__pyx_v_reverse_line[6]) = (__pyx_v_line[0]);
+  (__pyx_v_reverse_line[7]) = (__pyx_v_line[0]);
 
-  /* "terasort_faas/cython/read_terasort_data.pyx":33
- *     reverse_line[6] = line[0]
+  /* "terasort_faas/cython/read_terasort_data.pyx":34
+ *     reverse_line[7] = line[0]
  * 
  *     cdef uint64_t prefix = 0             # <<<<<<<<<<<<<<
- *     memcpy(&prefix, reverse_line, 7)
+ *     memcpy(&prefix, reverse_line, 8)
  *     res =  int((prefix - min_value) // range_per_part)
  */
   __pyx_v_prefix = 0;
 
-  /* "terasort_faas/cython/read_terasort_data.pyx":34
+  /* "terasort_faas/cython/read_terasort_data.pyx":35
  * 
  *     cdef uint64_t prefix = 0
- *     memcpy(&prefix, reverse_line, 7)             # <<<<<<<<<<<<<<
+ *     memcpy(&prefix, reverse_line, 8)             # <<<<<<<<<<<<<<
  *     res =  int((prefix - min_value) // range_per_part)
  *     return res
  */
-  (void)(memcpy((&__pyx_v_prefix), __pyx_v_reverse_line, 7));
+  (void)(memcpy((&__pyx_v_prefix), __pyx_v_reverse_line, 8));
 
-  /* "terasort_faas/cython/read_terasort_data.pyx":35
+  /* "terasort_faas/cython/read_terasort_data.pyx":36
  *     cdef uint64_t prefix = 0
- *     memcpy(&prefix, reverse_line, 7)
+ *     memcpy(&prefix, reverse_line, 8)
  *     res =  int((prefix - min_value) // range_per_part)             # <<<<<<<<<<<<<<
  *     return res
  * 
@@ -2537,18 +2546,18 @@ static PyObject *__pyx_f_13terasort_faas_18read_terasort_data_get_partition(char
   __pyx_t_1 = (__pyx_v_prefix - __pyx_v_13terasort_faas_18read_terasort_data_min_value);
   if (unlikely(__pyx_v_range_per_part == 0)) {
     PyErr_SetString(PyExc_ZeroDivisionError, "integer division or modulo by zero");
-    __PYX_ERR(0, 35, __pyx_L1_error)
+    __PYX_ERR(0, 36, __pyx_L1_error)
   }
-  __pyx_t_2 = __Pyx_PyInt_From_uint64_t((__pyx_t_1 / __pyx_v_range_per_part)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_uint64_t((__pyx_t_1 / __pyx_v_range_per_part)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyInt_Type)), __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyInt_Type)), __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_res = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "terasort_faas/cython/read_terasort_data.pyx":36
- *     memcpy(&prefix, reverse_line, 7)
+  /* "terasort_faas/cython/read_terasort_data.pyx":37
+ *     memcpy(&prefix, reverse_line, 8)
  *     res =  int((prefix - min_value) // range_per_part)
  *     return res             # <<<<<<<<<<<<<<
  * 
@@ -2564,7 +2573,7 @@ static PyObject *__pyx_f_13terasort_faas_18read_terasort_data_get_partition(char
  * 
  * cdef get_partition(char* line, uint64_t range_per_part):             # <<<<<<<<<<<<<<
  * 
- *     cdef char * reverse_line = <char *> malloc(sizeof(char)*7)
+ *     cdef char * reverse_line = <char *> malloc(sizeof(char)*8)
  */
 
   /* function exit code */
@@ -2580,7 +2589,7 @@ static PyObject *__pyx_f_13terasort_faas_18read_terasort_data_get_partition(char
   return __pyx_r;
 }
 
-/* "terasort_faas/cython/read_terasort_data.pyx":40
+/* "terasort_faas/cython/read_terasort_data.pyx":41
  * 
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -2644,7 +2653,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 40, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 41, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
@@ -2652,14 +2661,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 40, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 41, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("read_terasort_data", 1, 2, 2, 1); __PYX_ERR(0, 40, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("read_terasort_data", 1, 2, 2, 1); __PYX_ERR(0, 41, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "read_terasort_data") < 0)) __PYX_ERR(0, 40, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "read_terasort_data") < 0)) __PYX_ERR(0, 41, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
@@ -2672,7 +2681,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("read_terasort_data", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 40, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("read_terasort_data", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 41, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -2730,69 +2739,69 @@ static PyObject *__pyx_pf_13terasort_faas_18read_terasort_data_read_terasort_dat
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("read_terasort_data", 1);
 
-  /* "terasort_faas/cython/read_terasort_data.pyx":44
+  /* "terasort_faas/cython/read_terasort_data.pyx":45
  * def read_terasort_data(data, num_partitions):
  * 
  *     cdef int64_t data_len = len(data)             # <<<<<<<<<<<<<<
  *     cdef uint64_t range_per_part = ((max_value - min_value) // num_partitions)
  * 
  */
-  __pyx_t_1 = PyObject_Length(__pyx_v_data); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 44, __pyx_L1_error)
+  __pyx_t_1 = PyObject_Length(__pyx_v_data); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 45, __pyx_L1_error)
   __pyx_v_data_len = __pyx_t_1;
 
-  /* "terasort_faas/cython/read_terasort_data.pyx":45
+  /* "terasort_faas/cython/read_terasort_data.pyx":46
  * 
  *     cdef int64_t data_len = len(data)
  *     cdef uint64_t range_per_part = ((max_value - min_value) // num_partitions)             # <<<<<<<<<<<<<<
  * 
  *     cdef list key_list = []
  */
-  __pyx_t_2 = __Pyx_PyInt_From_uint64_t((__pyx_v_13terasort_faas_18read_terasort_data_max_value - __pyx_v_13terasort_faas_18read_terasort_data_min_value)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 45, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyInt_From_uint64_t((__pyx_v_13terasort_faas_18read_terasort_data_max_value - __pyx_v_13terasort_faas_18read_terasort_data_min_value)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 46, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyNumber_FloorDivide(__pyx_t_2, __pyx_v_num_partitions); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 45, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_FloorDivide(__pyx_t_2, __pyx_v_num_partitions); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 46, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __Pyx_PyInt_As_uint64_t(__pyx_t_3); if (unlikely((__pyx_t_4 == ((uint64_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 45, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_As_uint64_t(__pyx_t_3); if (unlikely((__pyx_t_4 == ((uint64_t)-1)) && PyErr_Occurred())) __PYX_ERR(0, 46, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_range_per_part = __pyx_t_4;
 
-  /* "terasort_faas/cython/read_terasort_data.pyx":47
+  /* "terasort_faas/cython/read_terasort_data.pyx":48
  *     cdef uint64_t range_per_part = ((max_value - min_value) // num_partitions)
  * 
  *     cdef list key_list = []             # <<<<<<<<<<<<<<
  *     cdef list value_list = []
  *     cdef list partition_list = []
  */
-  __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 48, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_v_key_list = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "terasort_faas/cython/read_terasort_data.pyx":48
+  /* "terasort_faas/cython/read_terasort_data.pyx":49
  * 
  *     cdef list key_list = []
  *     cdef list value_list = []             # <<<<<<<<<<<<<<
  *     cdef list partition_list = []
  * 
  */
-  __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 49, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_v_value_list = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "terasort_faas/cython/read_terasort_data.pyx":49
+  /* "terasort_faas/cython/read_terasort_data.pyx":50
  *     cdef list key_list = []
  *     cdef list value_list = []
  *     cdef list partition_list = []             # <<<<<<<<<<<<<<
  * 
  *     data_byte_string = data
  */
-  __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 50, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_v_partition_list = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "terasort_faas/cython/read_terasort_data.pyx":51
+  /* "terasort_faas/cython/read_terasort_data.pyx":52
  *     cdef list partition_list = []
  * 
  *     data_byte_string = data             # <<<<<<<<<<<<<<
@@ -2802,17 +2811,17 @@ static PyObject *__pyx_pf_13terasort_faas_18read_terasort_data_read_terasort_dat
   __Pyx_INCREF(__pyx_v_data);
   __pyx_v_data_byte_string = __pyx_v_data;
 
-  /* "terasort_faas/cython/read_terasort_data.pyx":52
+  /* "terasort_faas/cython/read_terasort_data.pyx":53
  * 
  *     data_byte_string = data
  *     cdef char * cdata = data_byte_string             # <<<<<<<<<<<<<<
  * 
  *     cdef size_t l = 0
  */
-  __pyx_t_5 = __Pyx_PyObject_AsWritableString(__pyx_v_data_byte_string); if (unlikely((!__pyx_t_5) && PyErr_Occurred())) __PYX_ERR(0, 52, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_AsWritableString(__pyx_v_data_byte_string); if (unlikely((!__pyx_t_5) && PyErr_Occurred())) __PYX_ERR(0, 53, __pyx_L1_error)
   __pyx_v_cdata = __pyx_t_5;
 
-  /* "terasort_faas/cython/read_terasort_data.pyx":54
+  /* "terasort_faas/cython/read_terasort_data.pyx":55
  *     cdef char * cdata = data_byte_string
  * 
  *     cdef size_t l = 0             # <<<<<<<<<<<<<<
@@ -2821,7 +2830,7 @@ static PyObject *__pyx_pf_13terasort_faas_18read_terasort_data_read_terasort_dat
  */
   __pyx_v_l = 0;
 
-  /* "terasort_faas/cython/read_terasort_data.pyx":55
+  /* "terasort_faas/cython/read_terasort_data.pyx":56
  * 
  *     cdef size_t l = 0
  *     cdef char * line = <char *> malloc(sizeof(char) * 100)             # <<<<<<<<<<<<<<
@@ -2830,7 +2839,7 @@ static PyObject *__pyx_pf_13terasort_faas_18read_terasort_data_read_terasort_dat
  */
   __pyx_v_line = ((char *)malloc(((sizeof(char)) * 0x64)));
 
-  /* "terasort_faas/cython/read_terasort_data.pyx":57
+  /* "terasort_faas/cython/read_terasort_data.pyx":58
  *     cdef char * line = <char *> malloc(sizeof(char) * 100)
  * 
  *     cdef uint64_t current_pos = 0             # <<<<<<<<<<<<<<
@@ -2839,7 +2848,7 @@ static PyObject *__pyx_pf_13terasort_faas_18read_terasort_data_read_terasort_dat
  */
   __pyx_v_current_pos = 0;
 
-  /* "terasort_faas/cython/read_terasort_data.pyx":58
+  /* "terasort_faas/cython/read_terasort_data.pyx":59
  * 
  *     cdef uint64_t current_pos = 0
  *     while current_pos < data_len:             # <<<<<<<<<<<<<<
@@ -2850,7 +2859,7 @@ static PyObject *__pyx_pf_13terasort_faas_18read_terasort_data_read_terasort_dat
     __pyx_t_6 = (__pyx_v_current_pos < __pyx_v_data_len);
     if (!__pyx_t_6) break;
 
-    /* "terasort_faas/cython/read_terasort_data.pyx":60
+    /* "terasort_faas/cython/read_terasort_data.pyx":61
  *     while current_pos < data_len:
  * 
  *         memcpy(line, cdata + (current_pos * sizeof(char)), sizeof(char)*100)             # <<<<<<<<<<<<<<
@@ -2859,70 +2868,70 @@ static PyObject *__pyx_pf_13terasort_faas_18read_terasort_data_read_terasort_dat
  */
     (void)(memcpy(__pyx_v_line, (__pyx_v_cdata + (__pyx_v_current_pos * (sizeof(char)))), ((sizeof(char)) * 0x64)));
 
-    /* "terasort_faas/cython/read_terasort_data.pyx":61
+    /* "terasort_faas/cython/read_terasort_data.pyx":62
  * 
  *         memcpy(line, cdata + (current_pos * sizeof(char)), sizeof(char)*100)
  *         partition = get_partition(line, range_per_part)             # <<<<<<<<<<<<<<
  *         key = line[0:10].decode('utf-8')
  *         value = line[11:99].decode('utf-8')
  */
-    __pyx_t_3 = __pyx_f_13terasort_faas_18read_terasort_data_get_partition(__pyx_v_line, __pyx_v_range_per_part); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 61, __pyx_L1_error)
+    __pyx_t_3 = __pyx_f_13terasort_faas_18read_terasort_data_get_partition(__pyx_v_line, __pyx_v_range_per_part); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 62, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_XDECREF_SET(__pyx_v_partition, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "terasort_faas/cython/read_terasort_data.pyx":62
+    /* "terasort_faas/cython/read_terasort_data.pyx":63
  *         memcpy(line, cdata + (current_pos * sizeof(char)), sizeof(char)*100)
  *         partition = get_partition(line, range_per_part)
  *         key = line[0:10].decode('utf-8')             # <<<<<<<<<<<<<<
  *         value = line[11:99].decode('utf-8')
  * 
  */
-    __pyx_t_3 = __Pyx_decode_c_string(__pyx_v_line, 0, 10, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 62, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_decode_c_string(__pyx_v_line, 0, 10, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 63, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_XDECREF_SET(__pyx_v_key, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "terasort_faas/cython/read_terasort_data.pyx":63
+    /* "terasort_faas/cython/read_terasort_data.pyx":64
  *         partition = get_partition(line, range_per_part)
  *         key = line[0:10].decode('utf-8')
  *         value = line[11:99].decode('utf-8')             # <<<<<<<<<<<<<<
  * 
  *         key_list.append(key)
  */
-    __pyx_t_3 = __Pyx_decode_c_string(__pyx_v_line, 11, 99, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 63, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_decode_c_string(__pyx_v_line, 11, 99, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 64, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_XDECREF_SET(__pyx_v_value, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "terasort_faas/cython/read_terasort_data.pyx":65
+    /* "terasort_faas/cython/read_terasort_data.pyx":66
  *         value = line[11:99].decode('utf-8')
  * 
  *         key_list.append(key)             # <<<<<<<<<<<<<<
  *         value_list.append(value)
  *         partition_list.append(partition)
  */
-    __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_key_list, __pyx_v_key); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 65, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_key_list, __pyx_v_key); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 66, __pyx_L1_error)
 
-    /* "terasort_faas/cython/read_terasort_data.pyx":66
+    /* "terasort_faas/cython/read_terasort_data.pyx":67
  * 
  *         key_list.append(key)
  *         value_list.append(value)             # <<<<<<<<<<<<<<
  *         partition_list.append(partition)
  * 
  */
-    __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_value_list, __pyx_v_value); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 66, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_value_list, __pyx_v_value); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 67, __pyx_L1_error)
 
-    /* "terasort_faas/cython/read_terasort_data.pyx":67
+    /* "terasort_faas/cython/read_terasort_data.pyx":68
  *         key_list.append(key)
  *         value_list.append(value)
  *         partition_list.append(partition)             # <<<<<<<<<<<<<<
  * 
  *         current_pos += 100
  */
-    __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_partition_list, __pyx_v_partition); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 67, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_partition_list, __pyx_v_partition); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 68, __pyx_L1_error)
 
-    /* "terasort_faas/cython/read_terasort_data.pyx":69
+    /* "terasort_faas/cython/read_terasort_data.pyx":70
  *         partition_list.append(partition)
  * 
  *         current_pos += 100             # <<<<<<<<<<<<<<
@@ -2932,7 +2941,7 @@ static PyObject *__pyx_pf_13terasort_faas_18read_terasort_data_read_terasort_dat
     __pyx_v_current_pos = (__pyx_v_current_pos + 0x64);
   }
 
-  /* "terasort_faas/cython/read_terasort_data.pyx":74
+  /* "terasort_faas/cython/read_terasort_data.pyx":75
  *     # fclose(cfile)
  * 
  *     return key_list, value_list, np.array(partition_list, dtype=np.uint16)             # <<<<<<<<<<<<<<
@@ -2940,46 +2949,46 @@ static PyObject *__pyx_pf_13terasort_faas_18read_terasort_data_read_terasort_dat
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_array); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_array); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(__pyx_v_partition_list);
   __Pyx_GIVEREF(__pyx_v_partition_list);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_v_partition_list)) __PYX_ERR(0, 74, __pyx_L1_error);
-  __pyx_t_8 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 74, __pyx_L1_error)
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_v_partition_list)) __PYX_ERR(0, 75, __pyx_L1_error);
+  __pyx_t_8 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_np); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_np); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
-  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_uint16); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_uint16); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_t_10) < 0) __PYX_ERR(0, 74, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_t_10) < 0) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-  __pyx_t_10 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_8); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_8); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = PyTuple_New(3); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __pyx_t_8 = PyTuple_New(3); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_INCREF(__pyx_v_key_list);
   __Pyx_GIVEREF(__pyx_v_key_list);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_v_key_list)) __PYX_ERR(0, 74, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_v_key_list)) __PYX_ERR(0, 75, __pyx_L1_error);
   __Pyx_INCREF(__pyx_v_value_list);
   __Pyx_GIVEREF(__pyx_v_value_list);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_v_value_list)) __PYX_ERR(0, 74, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_v_value_list)) __PYX_ERR(0, 75, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_10);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 2, __pyx_t_10)) __PYX_ERR(0, 74, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 2, __pyx_t_10)) __PYX_ERR(0, 75, __pyx_L1_error);
   __pyx_t_10 = 0;
   __pyx_r = __pyx_t_8;
   __pyx_t_8 = 0;
   goto __pyx_L0;
 
-  /* "terasort_faas/cython/read_terasort_data.pyx":40
+  /* "terasort_faas/cython/read_terasort_data.pyx":41
  * 
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -3073,17 +3082,17 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "terasort_faas/cython/read_terasort_data.pyx":40
+  /* "terasort_faas/cython/read_terasort_data.pyx":41
  * 
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)
  * def read_terasort_data(data, num_partitions):
  */
-  __pyx_tuple__2 = PyTuple_Pack(15, __pyx_n_s_data, __pyx_n_s_num_partitions, __pyx_n_s_data_len, __pyx_n_s_range_per_part, __pyx_n_s_key_list, __pyx_n_s_value_list, __pyx_n_s_partition_list, __pyx_n_s_data_byte_string, __pyx_n_s_cdata, __pyx_n_s_l, __pyx_n_s_line, __pyx_n_s_current_pos, __pyx_n_s_partition, __pyx_n_s_key, __pyx_n_s_value); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 40, __pyx_L1_error)
+  __pyx_tuple__2 = PyTuple_Pack(15, __pyx_n_s_data, __pyx_n_s_num_partitions, __pyx_n_s_data_len, __pyx_n_s_range_per_part, __pyx_n_s_key_list, __pyx_n_s_value_list, __pyx_n_s_partition_list, __pyx_n_s_data_byte_string, __pyx_n_s_cdata, __pyx_n_s_l, __pyx_n_s_line, __pyx_n_s_current_pos, __pyx_n_s_partition, __pyx_n_s_key, __pyx_n_s_value); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
-  __pyx_codeobj__3 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 15, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__2, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_terasort_faas_cython_read_teraso, __pyx_n_s_read_terasort_data, 40, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__3)) __PYX_ERR(0, 40, __pyx_L1_error)
+  __pyx_codeobj__3 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 15, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__2, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_terasort_faas_cython_read_teraso, __pyx_n_s_read_terasort_data, 41, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__3)) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -3464,31 +3473,31 @@ if (!__Pyx_RefNanny) {
   /* "terasort_faas/cython/read_terasort_data.pyx":18
  * 
  * 
- * cdef uint64_t max_value = 0x7e7e7e7e7e7e7e             # <<<<<<<<<<<<<<
- * cdef uint64_t min_value = 0x20202020202020
+ * cdef uint64_t max_value = 0x7e7e7e7e7e7e7e7e             # <<<<<<<<<<<<<<
+ * cdef uint64_t min_value = 0x2020202020202020
  * 
  */
-  __pyx_v_13terasort_faas_18read_terasort_data_max_value = 0x7e7e7e7e7e7e7e;
+  __pyx_v_13terasort_faas_18read_terasort_data_max_value = 0x7e7e7e7e7e7e7e7e;
 
   /* "terasort_faas/cython/read_terasort_data.pyx":19
  * 
- * cdef uint64_t max_value = 0x7e7e7e7e7e7e7e
- * cdef uint64_t min_value = 0x20202020202020             # <<<<<<<<<<<<<<
+ * cdef uint64_t max_value = 0x7e7e7e7e7e7e7e7e
+ * cdef uint64_t min_value = 0x2020202020202020             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_v_13terasort_faas_18read_terasort_data_min_value = 0x20202020202020;
+  __pyx_v_13terasort_faas_18read_terasort_data_min_value = 0x2020202020202020;
 
-  /* "terasort_faas/cython/read_terasort_data.pyx":40
+  /* "terasort_faas/cython/read_terasort_data.pyx":41
  * 
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)
  * def read_terasort_data(data, num_partitions):
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_13terasort_faas_18read_terasort_data_1read_terasort_data, 0, __pyx_n_s_read_terasort_data, NULL, __pyx_n_s_terasort_faas_read_terasort_data, __pyx_d, ((PyObject *)__pyx_codeobj__3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 40, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_13terasort_faas_18read_terasort_data_1read_terasort_data, 0, __pyx_n_s_read_terasort_data, NULL, __pyx_n_s_terasort_faas_read_terasort_data, __pyx_d, ((PyObject *)__pyx_codeobj__3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_read_terasort_data, __pyx_t_2) < 0) __PYX_ERR(0, 40, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_read_terasort_data, __pyx_t_2) < 0) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "terasort_faas/cython/read_terasort_data.pyx":1
