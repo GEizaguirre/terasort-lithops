@@ -107,6 +107,6 @@ class Reducer():
 
 
 def run_reducer(reducer: Reducer):
-    reducer.run()
+    return reducer.run()
 
 

@@ -50,7 +50,8 @@ class Mapper:
         self.execution_data["construct_time"] = time.time()
         self.execution_data["total_rows"] = len(self.df)
         row_counts = np.unique(self.partitioning, return_counts=True)
-        self.execution_data["partition_rows"] = { k: v for k, v
+        print(row_counts)
+        self.execution_data["partition_rows"] = { int(k): int(v) for k, v
                                                  in zip(row_counts[0], row_counts[1])}
 
         self.serialize()
@@ -64,7 +65,7 @@ class Mapper:
 
         self.execution_data["end_time"] = time.time()
 
-        return {"mapper_%d"%(self.partition_id): self.execution_data}
+        return {"mapper_%d"%(self.partition_id): self.execution_data }
 
     
     def read(self):
@@ -143,6 +144,6 @@ class Mapper:
 
 
 def run_mapper(mapper: Mapper):
-    mapper.run()
+    return mapper.run()
 
 
