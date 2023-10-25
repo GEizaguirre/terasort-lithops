@@ -31,7 +31,7 @@ def run_terasort(
     timestamp_prefix = f"{timestamp}"
     setup_logger(timestamp_prefix)
     
-    executor = FunctionExecutor(runtime_memory=runtime_memory)
+    executor = FunctionExecutor(runtime_memory=runtime_memory, runtime=runtime_name)
 
     dataset_size = get_data_size(executor.storage, bucket, key)
 
