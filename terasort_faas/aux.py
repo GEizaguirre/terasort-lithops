@@ -3,7 +3,10 @@ from terasort_faas.df import deserialize
 from terasort_faas.config import OUTPUT_PREFIX
 import sys
 import polars as pl
+import logging
+from terasort_faas.config import *
 
+console_logger = logging.getLogger(CONSOLE_LOGGER)
 
 def check_output(bucket, prefix):
     
@@ -42,5 +45,18 @@ def remove_intermediates(executor, bucket, timestamp_prefix):
     keys = [ k["Key"] for k in keys ]
 
     executor.storage.delete_objects(bucket, keys)
+
+
+def warm_up_functions(runtime, runtime_memory):
+
+    console_logger.info("Warming up functions.")
+
+    executor = FunctionExecutor(runtime=runtime, runtime_memory=runtime_memory)
+
+    def foo(x):
+        return x
+    
+    fts = executor.map(foo, range(1000))
+    executor.wait(fts)
 
 

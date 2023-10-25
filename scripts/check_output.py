@@ -1,4 +1,4 @@
-from terasort_faas.check_output import check_output
+from terasort_faas.aux import check_output
 import sys
 
 bucket = sys.argv[1]

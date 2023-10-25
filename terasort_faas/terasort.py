@@ -85,7 +85,7 @@ def run_terasort(
     executor.wait(reducer_futures)
     end_time = time.time()
 
-    click.echo(bcolors.OKGREEN+bcolors.BOLD+"Sort time: %.2f s"%(end_time-start_time)+bcolors.ENDC+bcolors.ENDC)
+    click.echo(bcolors.OKGREEN+bcolors.BOLD+"Client sort time: %.2f s"%(end_time-start_time)+bcolors.ENDC+bcolors.ENDC)
 
     function_results = executor.get_result(map_futures+reducer_futures)
 

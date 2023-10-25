@@ -10,6 +10,19 @@ def get_total_time(fname):
     sort_key = [ k for k in data.keys() if k == "sort" ][0]
     return data[sort_key]["end_time"] - data[sort_key]["start_time"]
 
+def get_real_sort_time(fname):
+    data = yaml.safe_load(open(fname, "r"))
+    mapper_keys = [ k for k in data.keys() if k.startswith("mapper") ]
+    reducer_keys = [ k for k in data.keys() if k.startswith("reducer") ]
+
+    mapper_start_times = [ data[k]["start_time"] for k in mapper_keys ]
+    sort_start = min(mapper_start_times)
+
+    reducer_end_times = [ data[k]["end_time"] for k in reducer_keys ]
+    sort_end = max(reducer_end_times)
+
+    return sort_end - sort_start
+
 def get_exchange_time(fname):
     data = yaml.safe_load(open(fname, "r"))
     mapper_keys = [ k for k in data.keys() if k.startswith("mapper") ]
@@ -119,6 +132,8 @@ def result_summary(fname):
 
     exchange_time = get_exchange_time(fname)
 
+    real_sort_time = get_real_sort_time(fname)
+
     mapper_times = get_mapper_times(fname)
     avg_mapper_time = np.mean(mapper_times)
     desv_mapper_time = np.std(mapper_times)
@@ -161,8 +176,19 @@ def result_summary(fname):
 
     total_time = get_total_time(fname)
 
+    data = yaml.safe_load(open(fname, "r"))
+    dataset_name = data["execution_info"]["dataset"]
+    dataset_size = data["execution_info"]["dataset_size"]
+    map_partitions = data["execution_info"]["map_parallelism"]
+    reduce_partitions = data["execution_info"]["reduce_parallelism"]
+    
     texts = [
+        "Dataset name: %s"%(dataset_name),
+        "Dataset size: %.2f MB"%(dataset_size),
+        "Map partitions: %d"%(map_partitions),
+        "Reduce partitions: %d"%(reduce_partitions), 
         "Total time: %.2fs"%(total_time),
+        "Real sort time: %.2fs"%(real_sort_time),
         "Exchange time: %.2fs"%(exchange_time),
         "Average mapper time: %.2f \N{PLUS-MINUS SIGN} %.2fs"%(avg_mapper_time, desv_mapper_time),
         "    Average scan time: %.2f \N{PLUS-MINUS SIGN} %.2fs"%(avg_scan_time, desv_scan_time),
@@ -175,7 +201,7 @@ def result_summary(fname):
         "    Average sort time: %.2f \N{PLUS-MINUS SIGN} %.2fs"%(avg_sort_time, desv_sort_time),
         "    Average write time: %.2f \N{PLUS-MINUS SIGN} %.2fs"%(avg_write_time, desv_write_time),
     ]
-    bold_lines = [1, 2, 7]
+    bold_lines = [6, 7, 12]
 
 
     longest_text = max([len(text) for text in texts])
