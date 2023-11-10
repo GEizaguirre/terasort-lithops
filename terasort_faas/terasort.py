@@ -39,16 +39,20 @@ def run_terasort(
     click.echo("\t- "+bcolors.BOLD+"%d"%(map_parallelism)+bcolors.ENDC+" map partitions.")
     click.echo("\t- "+bcolors.BOLD+"%d"%(reduce_parallelism)+bcolors.ENDC+" reduce partitions.")
 
-    execution_logger.info(yaml.dump(
-            {"execution_info": {
+    execution_logs = {
+        "execution_info": {
                 "dataset": key,
                 "map_parallelism": map_parallelism,
                 "reduce_parallelism": reduce_parallelism,
                 "dataset_size": dataset_size / 1024 / 1024,
                 "timestamp": timestamp_prefix
-             }}, 
-            default_flow_style=False
-        ))
+            }
+    }
+
+    # execution_logger.info(yaml.dump(
+    #         execution_logs, 
+    #         default_flow_style=False
+    #     ))
 
     mappers = [
                 Mapper(
@@ -90,24 +94,28 @@ def run_terasort(
     function_results = executor.get_result(map_futures+reducer_futures)
 
     for result in function_results:
-        execution_logger.info(yaml.dump(
-                result, 
-                default_flow_style=False
-            ))
+        for k, v in result.items():
+            execution_logs[k] = v
+        # execution_logger.info(yaml.dump(
+        #         result, 
+        #         default_flow_style=False
+        #     ))
 
     execution_data = {
         "start_time": start_time,
         "end_time": end_time
     }
-    execution_logger.info(
-        yaml.dump(
-            {"sort": execution_data}, 
-            default_flow_style=False
-        )
-    )
+    execution_logs["sort"] = execution_data
+    # execution_logger.info(
+    #     yaml.dump(
+    #         {"sort": execution_data}, 
+    #         default_flow_style=False
+    #     )
+    # )
 
-
-    log_file = os.path.join(LOG_PATH, "%s.yaml"%(timestamp_prefix))
+    log_file = os.path.join(LOG_PATH, "%s.pickle"%(timestamp_prefix))
+    pickle.dump(execution_logs, open(log_file, "wb"))
+    # log_file = os.path.join(LOG_PATH, "%s.yaml"%(timestamp_prefix))
     print("Log file: %s"%(log_file))
 
     click.echo("\n\nRemoving intermediates...")

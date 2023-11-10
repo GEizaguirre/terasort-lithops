@@ -34,7 +34,7 @@ pip3 install -e .
 You should build and deploy a custom runtime on your FaaS service. [Lithops describes how do it](https://github.com/lithops-cloud/lithops/tree/master/runtime) for most cloud providers. Use the [Dockerfile included in this project](Dockerfile). Having docker installed and configured in your computer, it should be something as simple as:
 
 ```bash
-lithops runtime build -f Dockerfile -b aws_lambda "terasort/terasort-runtime-1.0"
+lithops runtime build -f Dockerfile -b aws_lambda "terasort/terasort-lithops-1.0"
 ```
 
 ## Execution
