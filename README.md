@@ -29,6 +29,8 @@ pip3 install -r requirements.txt
 pip3 install -e .
 ```
 
+(make sure you have gcc installed in your computer)
+
 ### Runtime set up
 
 You should build and deploy a custom runtime on your FaaS service. [Lithops describes how do it](https://github.com/lithops-cloud/lithops/tree/master/runtime) for most cloud providers. Use the [Dockerfile included in this project](Dockerfile). Having docker installed and configured in your computer, it should be something as simple as:

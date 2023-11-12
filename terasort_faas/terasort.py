@@ -12,7 +12,8 @@ from terasort_faas.reducer import Reducer, run_reducer
 from terasort_faas.config import bcolors
 import logging
 from terasort_faas.config import *
-import yaml
+# import yaml
+import cloudpickle as pickle
 
 console_logger = logging.getLogger(CONSOLE_LOGGER)
 execution_logger = logging.getLogger(EXECUTION_LOGGER)

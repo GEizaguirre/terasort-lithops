@@ -1,17 +1,16 @@
 import yaml
 import numpy as np
 from terasort_faas.config import *
+import cloudpickle as pickle
 
 bold_code = "\033[1m"
 reset_code = "\033[0m"
 
-def get_total_time(fname):
-    data = yaml.safe_load(open(fname, "r"))
+def get_total_time(data):
     sort_key = [ k for k in data.keys() if k == "sort" ][0]
     return data[sort_key]["end_time"] - data[sort_key]["start_time"]
 
-def get_real_sort_time(fname):
-    data = yaml.safe_load(open(fname, "r"))
+def get_real_sort_time(data):    
     mapper_keys = [ k for k in data.keys() if k.startswith("mapper") ]
     reducer_keys = [ k for k in data.keys() if k.startswith("reducer") ]
 
@@ -23,8 +22,7 @@ def get_real_sort_time(fname):
 
     return sort_end - sort_start
 
-def get_exchange_time(fname):
-    data = yaml.safe_load(open(fname, "r"))
+def get_exchange_time(data):
     mapper_keys = [ k for k in data.keys() if k.startswith("mapper") ]
     reducer_keys = [ k for k in data.keys() if k.startswith("reducer") ]
 
@@ -37,8 +35,7 @@ def get_exchange_time(fname):
     return exchange_end - exchange_start
 
 
-def get_mapper_times(fname):
-    data = yaml.safe_load(open(fname, "r"))
+def get_mapper_times(data):
     mapper_keys = [ k for k in data.keys() if k.startswith("mapper") ]
 
     mapper_times = [ data[k]["end_time"] - data[k]["start_time"] for k in mapper_keys ]
@@ -47,8 +44,7 @@ def get_mapper_times(fname):
 
 
 
-def get_reducer_times(fname):
-    data = yaml.safe_load(open(fname, "r"))
+def get_reducer_times(data):
     reducer_keys = [ k for k in data.keys() if k.startswith("reducer") ]
 
     reducer_times = [ data[k]["end_time"] - data[k]["start_time"] for k in reducer_keys ]
@@ -56,8 +52,7 @@ def get_reducer_times(fname):
     return reducer_times
 
 
-def get_scan_times(fname):
-    data = yaml.safe_load(open(fname, "r"))
+def get_scan_times(data):
     mapper_keys = [ k for k in data.keys() if k.startswith("mapper") ]
 
     scan_times = [ data[k]["scan_time"] - data[k]["start_time"] for k in mapper_keys ]
@@ -65,8 +60,7 @@ def get_scan_times(fname):
     return scan_times
 
 
-def get_construct_time(fname):
-    data = yaml.safe_load(open(fname, "r"))
+def get_construct_time(data):
     mapper_keys = [ k for k in data.keys() if k.startswith("mapper") ]
 
     construct_times = [ data[k]["construct_time"] - data[k]["scan_time"] for k in mapper_keys ]
@@ -74,8 +68,7 @@ def get_construct_time(fname):
     return construct_times
 
 
-def get_serialization_times(fname):
-    data = yaml.safe_load(open(fname, "r"))
+def get_serialization_times(data):
     mapper_keys = [ k for k in data.keys() if k.startswith("mapper") ]
 
     serialization_times = [ data[k]["exchange_start"] - data[k]["construct_time"] for k in mapper_keys ]
@@ -83,8 +76,7 @@ def get_serialization_times(fname):
     return serialization_times
 
 
-def get_exchange_write_times(fname):
-    data = yaml.safe_load(open(fname, "r"))
+def get_exchange_write_times(data):
     mapper_keys = [ k for k in data.keys() if k.startswith("mapper") ]
 
     exchange_write_times = [ data[k]["end_time"] - data[k]["exchange_start"] for k in mapper_keys ]
@@ -92,8 +84,7 @@ def get_exchange_write_times(fname):
     return exchange_write_times
 
 
-def get_exchange_read_times(fname):
-    data = yaml.safe_load(open(fname, "r"))
+def get_exchange_read_times(data):
     reducer_keys = [ k for k in data.keys() if k.startswith("reducer") ]
 
     exchange_read_times = [ data[k]["exchange_end"] - data[k]["start_time"] for k in reducer_keys ]
@@ -101,8 +92,7 @@ def get_exchange_read_times(fname):
     return exchange_read_times
 
 
-def get_aggregation_times(fname):
-    data = yaml.safe_load(open(fname, "r"))
+def get_aggregation_times(data):
     reducer_keys = [ k for k in data.keys() if k.startswith("reducer") ]
 
     aggregation_times = [ data[k]["aggregation_time"] - data[k]["exchange_end"] for k in reducer_keys ]
@@ -110,16 +100,14 @@ def get_aggregation_times(fname):
     return aggregation_times
 
 
-def get_sort_times(fname):
-    data = yaml.safe_load(open(fname, "r"))
+def get_sort_times(data):
     reducer_keys = [ k for k in data.keys() if k.startswith("reducer") ]
 
     sort_times = [ data[k]["sort_time"] - data[k]["aggregation_time"] for k in reducer_keys ]
 
     return sort_times
 
-def get_write_times(fname):
-    data = yaml.safe_load(open(fname, "r"))
+def get_write_times(data):
     reducer_keys = [ k for k in data.keys() if k.startswith("reducer") ]
 
     write_times = [ data[k]["end_time"] - data[k]["sort_time"] for k in reducer_keys ]
@@ -130,53 +118,54 @@ def get_write_times(fname):
 
 def result_summary(fname):
 
-    exchange_time = get_exchange_time(fname)
+    data = pickle.load(open(fname, "rb"))
 
-    real_sort_time = get_real_sort_time(fname)
+    exchange_time = get_exchange_time(data)
 
-    mapper_times = get_mapper_times(fname)
+    real_sort_time = get_real_sort_time(data)
+
+    mapper_times = get_mapper_times(data)
     avg_mapper_time = np.mean(mapper_times)
     desv_mapper_time = np.std(mapper_times)
 
-    scan_times = get_scan_times(fname)
+    scan_times = get_scan_times(data)
     avg_scan_time = np.mean(scan_times)
     desv_scan_time = np.std(scan_times)
 
-    construct_times = get_construct_time(fname)
+    construct_times = get_construct_time(data)
     avg_construct_time = np.mean(construct_times)
     desv_construct_time = np.std(construct_times)
 
-    serialization_times = get_serialization_times(fname)
+    serialization_times = get_serialization_times(data)
     avg_serialization_time = np.mean(serialization_times)
     desv_serialization_time = np.std(serialization_times)
 
-    exchange_write_times = get_exchange_write_times(fname)
+    exchange_write_times = get_exchange_write_times(data)
     avg_exchange_write_time = np.mean(exchange_write_times)
     desv_exchange_write_time = np.std(exchange_write_times)
 
-    reducer_times = get_reducer_times(fname)
+    reducer_times = get_reducer_times(data)
     avg_reducer_time = np.mean(reducer_times)
     desv_reducer_time = np.std(reducer_times)
 
-    exchange_read_times = get_exchange_read_times(fname)
+    exchange_read_times = get_exchange_read_times(data)
     avg_exchange_read_time = np.mean(exchange_read_times)
     desv_exchange_read_time = np.std(exchange_read_times)
 
-    aggregation_times = get_aggregation_times(fname)
+    aggregation_times = get_aggregation_times(data)
     avg_aggregation_time = np.mean(aggregation_times)
     desv_aggregation_time = np.std(aggregation_times)
 
-    sort_times = get_sort_times(fname)
+    sort_times = get_sort_times(data)
     avg_sort_time = np.mean(sort_times)
     desv_sort_time = np.std(sort_times)
 
-    write_times = get_write_times(fname)
+    write_times = get_write_times(data)
     avg_write_time = np.mean(write_times)
     desv_write_time = np.std(write_times)
 
-    total_time = get_total_time(fname)
+    total_time = get_total_time(data)
 
-    data = yaml.safe_load(open(fname, "r"))
     dataset_name = data["execution_info"]["dataset"]
     dataset_size = data["execution_info"]["dataset_size"]
     map_partitions = data["execution_info"]["map_parallelism"]
