@@ -6,7 +6,7 @@ import time
 from terasort_faas.IO import get_data_size
 from terasort_faas.aux import remove_intermediates
 from terasort_faas.logging.logging import setup_logger
-from terasort_faas.logging.results import result_summary
+from terasort_faas.logging.results import result_summary, compute_stats
 from terasort_faas.mapper import Mapper, run_mapper
 from terasort_faas.reducer import Reducer, run_reducer
 from terasort_faas.config import bcolors
@@ -114,6 +114,7 @@ def run_terasort(
     #     )
     # )
 
+    execution_logs['execution_results'] = compute_stats(execution_logs)
     log_file = os.path.join(LOG_PATH, "%s.pickle"%(timestamp_prefix))
     pickle.dump(execution_logs, open(log_file, "wb"))
     # log_file = os.path.join(LOG_PATH, "%s.yaml"%(timestamp_prefix))
@@ -123,7 +124,4 @@ def run_terasort(
     remove_intermediates(executor, bucket, timestamp_prefix)
 
     result_summary(log_file)
-
-
-
     
