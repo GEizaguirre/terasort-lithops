@@ -61,7 +61,7 @@ def read_terasort_data(data, num_partitions):
         memcpy(line, cdata + (current_pos * sizeof(char)), sizeof(char)*100)
         partition = get_partition(line, range_per_part)
         key = line[0:10].decode('utf-8')
-        value = line[11:99].decode('utf-8')
+        value = line[10:100].decode('utf-8')
 
         key_list.append(key)
         value_list.append(value)
