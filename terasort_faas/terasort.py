@@ -4,7 +4,7 @@ from lithops import FunctionExecutor
 from datetime import datetime
 import time
 from terasort_faas.IO import get_data_size
-from terasort_faas.aux import remove_intermediates
+from terasort_faas.aux import hash_to_5_chars, remove_intermediates
 from terasort_faas.logging.logging import setup_logger
 from terasort_faas.logging.results import result_summary, compute_stats
 from terasort_faas.mapper import Mapper, run_mapper
@@ -121,7 +121,7 @@ def run_terasort(
     print("Log file: %s"%(log_file))
 
     click.echo("\n\nRemoving intermediates...")
-    remove_intermediates(executor, bucket, timestamp_prefix)
+    remove_intermediates(executor, bucket, [timestamp_prefix]+[hash_to_5_chars(r) for r in range(reduce_parallelism)])
 
     result_summary(log_file)
     

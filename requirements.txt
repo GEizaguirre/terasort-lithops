@@ -6,3 +6,5 @@ Cython
 pyarrow
 click
 pandas
+hashlib
+base64

@@ -1,6 +1,7 @@
 import gc
 from typing import Dict
 from lithops import Storage
+from terasort_faas.aux import hash_to_5_chars
 from terasort_faas.df import construct_df,  serialize_partitions
 from terasort_faas.read_terasort_data import read_terasort_data
 import concurrent
@@ -135,7 +136,7 @@ class Mapper:
                 future = executor.submit(
                      timed_put,  
                      self.bucket,
-                     f"{self.timestamp_prefix}/intermediates/{subpartition_id}", 
+                     f"{hash_to_5_chars(reducer_id)}/{self.timestamp_prefix}/intermediates/{subpartition_id}", 
                      data)
                 
                 futures.append(future)

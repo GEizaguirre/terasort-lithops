@@ -5,6 +5,8 @@ import sys
 import polars as pl
 import logging
 from terasort_faas.config import *
+import hashlib
+import base64
 
 console_logger = logging.getLogger(CONSOLE_LOGGER)
 
@@ -39,12 +41,13 @@ def check_output(bucket, prefix):
     print(f"Global sorting: {is_ascending}. ({len(all_keys)} registers)")
 
 
-def remove_intermediates(executor, bucket, timestamp_prefix):
+def remove_intermediates(executor, bucket, prefixes):
 
-    keys = executor.storage.list_objects(bucket, prefix=timestamp_prefix)
-    keys = [ k["Key"] for k in keys ]
+    for prefix in prefixes:
+        keys = executor.storage.list_objects(bucket, prefix=prefix)
+        keys = [ k["Key"] for k in keys ]
 
-    executor.storage.delete_objects(bucket, keys)
+        executor.storage.delete_objects(bucket, keys)
 
 
 def warm_up_functions(runtime, runtime_memory):
@@ -60,3 +63,15 @@ def warm_up_functions(runtime, runtime_memory):
     executor.wait(fts)
 
 
+def hash_to_5_chars(num):
+    # Convert the integer to bytes
+    num_bytes = num.to_bytes((num.bit_length() + 7) // 8, 'big')
+
+    # Compute the SHA-256 hash
+    hash_bytes = hashlib.sha256(num_bytes).digest()
+
+    # Encode the hash in base64
+    base64_hash = base64.b64encode(hash_bytes)
+
+    # Take the first 5 characters
+    return base64_hash[:5].decode()

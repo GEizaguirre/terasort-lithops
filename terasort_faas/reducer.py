@@ -5,6 +5,7 @@ from terasort_faas.config import OUTPUT_PREFIX
 from terasort_faas.IO import reader
 from terasort_faas.df import serialize, concat_progressive
 import time
+from terasort_faas import hash_to_5_chars
 
 
 class Reducer():
@@ -64,6 +65,7 @@ class Reducer():
         # random.shuffle(map_parts)
 
         futures = []
+        my_prefix = hash_to_5_chars(self.partition_id)
 
         with concurrent.futures.ThreadPoolExecutor(max_workers=len(map_parts)) as executor:
 
@@ -71,7 +73,7 @@ class Reducer():
 
                 future = executor.submit(
                      reader, 
-                     f"{self.timestamp_prefix}/intermediates/{subpartition_id}", 
+                     f"{my_prefix}/{self.timestamp_prefix}/intermediates/{subpartition_id}", 
                      self.bucket,
                      self.storage)
                 
