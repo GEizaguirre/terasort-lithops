@@ -5,7 +5,7 @@ from terasort_faas.config import OUTPUT_PREFIX
 from terasort_faas.IO import reader
 from terasort_faas.df import serialize, concat_progressive
 import time
-from terasort_faas import hash_to_5_chars
+from terasort_faas.aux import hash_to_5_chars
 
 
 class Reducer():
