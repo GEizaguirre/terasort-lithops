@@ -1,7 +1,7 @@
 import os
 
 # IO
-MAX_RETRIES: int = 15
+MAX_RETRIES: int = 8
 MAX_READ_TIME: int = 60
 RETRY_WAIT_TIME: float = 0.5
 OUTPUT_PREFIX="out"

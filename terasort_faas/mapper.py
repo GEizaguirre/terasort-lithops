@@ -5,7 +5,7 @@ from terasort_faas.aux import hash_to_5_chars
 from terasort_faas.df import construct_df,  serialize_partitions
 from terasort_faas.read_terasort_data import read_terasort_data
 import concurrent
-from terasort_faas.IO import get_read_range
+from terasort_faas.IO import get_read_range, timed_put
 from terasort_faas.config import *
 import logging
 import time
@@ -121,12 +121,6 @@ class Mapper:
 
         futures = []
 
-        def timed_put(bucket, key, body):
-            then = time.time()
-            self.storage.put_object(bucket, key, body)
-            elapsed = time.time() - then
-            return elapsed
-
         with concurrent.futures.ThreadPoolExecutor(max_workers=len(self.partitions)) as executor:
 
             for reducer_id, data in self.partitions.items():
@@ -134,7 +128,8 @@ class Mapper:
                 subpartition_id = base_id + reducer_id
 
                 future = executor.submit(
-                     timed_put,  
+                     timed_put,
+                     self.storage,
                      self.bucket,
                      f"{hash_to_5_chars(reducer_id)}/{self.timestamp_prefix}/intermediates/{subpartition_id}", 
                      data)
