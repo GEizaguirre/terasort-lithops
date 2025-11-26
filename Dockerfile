@@ -1,6 +1,6 @@
 
 # Python 3.10
-FROM python:3.10-slim-buster
+FROM python:3.10-slim-trixie
 
 RUN apt-get update \
     # Install aws-lambda-cpp build dependencies
@@ -58,7 +58,7 @@ RUN unzip lithops_lambda.zip \
 RUN wget https://github.com/GEizaguirre/terasort-lithops/archive/refs/heads/main.zip \
     && unzip main.zip \
     && cd terasort-lithops-main \
-    && pip3 install -e . \
+    && pip3 install --no-build-isolation -e . \
     && cd ..
 
 ENTRYPOINT [ "/usr/local/bin/python", "-m", "awslambdaric" ]
